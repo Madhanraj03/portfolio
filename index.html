@@ -1547,7 +1547,7 @@ function showToast(message){
 (function(){
   var EMAILJS_PUBLIC_KEY  = 'FePA1yA5y3pvF8AD0';
   var EMAILJS_SERVICE_ID  = 'service_ghu3krn';
-  var EMAILJS_TEMPLATE_ID = 'template_hhptk1g';
+  var EMAILJS_TEMPLATE_ID = 'template_xit8cfh';
 
   if(window.emailjs && typeof emailjs.init === 'function'){
     emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
@@ -1580,24 +1580,13 @@ function showToast(message){
         if(typeof showToast === 'function') showToast("Message sent — I'll get back to you soon.");
         form.reset();
       })
-      // .catch(function(err){
-      //   statusEl.textContent = 'Something went wrong — please try emailing me directly.';
-      //   statusEl.className = 'form-status error';
-      //   if(typeof showToast === 'function') showToast('Something went wrong — please try again.');
-      //   console.error('EmailJS error:', err);
-      // })
-
       .catch(function(err){
-          console.error("FULL EMAILJS ERROR:", err);
-      
-          statusEl.textContent =
-              "EmailJS Error: " + (err.text || err.message || JSON.stringify(err));
-      
-          statusEl.className = 'form-status error';
-      
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Send message';
-      });
+        statusEl.textContent = 'Something went wrong — please try emailing me directly.';
+        statusEl.className = 'form-status error';
+        if(typeof showToast === 'function') showToast('Something went wrong — please try again.');
+        console.error('EmailJS error:', err);
+      })
+
       .finally(function(){
         submitBtn.disabled = false;
         submitBtn.textContent = 'Send message';
